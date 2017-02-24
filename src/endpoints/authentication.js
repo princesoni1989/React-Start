@@ -3,11 +3,15 @@
  */
 export default({
   login: {
-    path: 'https://frozen-tundra-93174.herokuapp.com/auth/local',
+    path: 'http://localhost:3000/api/login',
     method: 'POST',
   },
   signup: {
-    path: 'https://frozen-tundra-93174.herokuapp.com/api/users/',
+    path: 'http://localhost:3000/api/signup',
     method: 'POST',
+  },
+  users: {
+    path: 'http://localhost:3000/api/users',
+    method: 'GET',
   },
 });

@@ -64,7 +64,7 @@ class Login extends Component {
       }
       else {
         this.props.userLogin(endpoints.login, {
-          username: email.value,
+          email: email.value,
           password: password.value,
         });
       }
@@ -85,7 +85,7 @@ class Login extends Component {
         </p>
         <ul className='login-form'>
           <li className='form-group'>
-            <input className='form-control' id='email' type='email' placeholder='Email' ref='email'
+            <input className='form-control' id='email' type='email' name='email' placeholder='Email' ref='email'
                    onChange={(e) => this.changeHandler(e.target.value, 'email', true)} required />
             <p className='form-group text-danger'>
               {email.changed && !validateEmail(email.value) && 'Enter a valid email address.'}
@@ -93,16 +93,13 @@ class Login extends Component {
             </p>
           </li>
           <li className='form-group'>
-            <input className='form-control' id='password' type={this.state.type} placeholder='Password' ref='password'
+            <input className='form-control' id='password' type={this.state.type} name='password' placeholder='Password' ref='password'
                    onChange={(e) => this.changeHandler(e.target.value, 'password', true)} required />
             <span className='show-password' onClick={showPassword}>SHOW</span>
             <p className='form-group text-danger'>
               {password.changed && !lessThan(password.value, 6) && 'Password must be 6 characters long.'}
               {onSubmit && !isRequired(password.value) && 'Mandatory Field.'}
             </p>
-          </li>
-          <li className='form-group form-group'>
-            <a href='#' className='form-link'>Forgot Password ?</a>
           </li>
           <li className='form-group txt-center'>
             <button className='btn-default' onClick={() => handleLogin()}>Login</button>
