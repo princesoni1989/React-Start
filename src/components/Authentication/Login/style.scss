@@ -1,0 +1,38 @@
+.login-container {
+  padding: 15px;
+}
+.login-form-container {
+  .seperator-line {
+    padding: 15px;
+    text-align: center;
+
+    span {
+      color: #798993;
+      font-size: 14px;
+      line-height: 30px;
+      position: relative;
+      display: inline-block;
+      padding: 0 10px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 50px;
+        top: 15px;
+        left: -50px;
+        background-color: #f3f3f3;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 50px;
+        top: 15px;
+        right: -50px;
+        background-color: #f3f3f3;
+      }
+    }
+  }
+}
