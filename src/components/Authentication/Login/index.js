@@ -3,7 +3,8 @@ import {bindActionCreators} from 'redux';
 import {isRequired, lessThan, validateEmail} from '../../../util/validations';
 import login from '../../../actions/authentication';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
+import endpoints from '../../../endpoints/authentication';
 
 import './style.scss';
 
@@ -45,6 +46,11 @@ class Login extends Component {
   };
 
   render () {
+    const {login} = this.props;
+    console.log("login", login);
+    if(login.status)
+      browserHistory.push('/users');
+
     const {email, password, onSubmit, type}=this.state;
     const showPassword = () => {
       let inputType = "";

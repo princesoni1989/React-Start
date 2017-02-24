@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {signUp} from '../../../actions/authentication';
 import {bindActionCreators} from 'redux';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import {signUpNewUser} from '../../../actions/authentication';
 import './style.scss';
 
@@ -44,6 +44,9 @@ class SignUp extends Component {
 
 
   render () {
+    const {signup} = this.props;
+    if(signup.status)
+      browserHistory.push('/users');
     const {email, fullName, password, age, location, onSubmit, type}=this.state;
     return (
       <div className='signup-form'>

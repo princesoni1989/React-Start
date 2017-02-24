@@ -5,7 +5,9 @@ import {
   SIGNUP_FAILURE,
 } from '../constants';
 
-const initialState = {};
+const initialState = {
+  status: false,
+};
 
 const authentication = function (state = initialState, action) {
   switch (action.type) {
