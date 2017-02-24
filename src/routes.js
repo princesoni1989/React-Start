@@ -5,6 +5,7 @@ import App from './components/App';
 import Landing from './components/Landing';
 import Login from './components/Authentication/Login/';
 import SignUp from './components/Authentication/SignUp';
+import Users from './components/Users'
 
 // require.ensure polyfill for node
 if (typeof require.ensure !== 'function') {
@@ -41,5 +42,13 @@ export default (
         });
       }}
     />
+    <Route
+      path='/users'
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, Users);
+        });
+      }}
+      />
   </Route>
 );
