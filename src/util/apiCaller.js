@@ -8,11 +8,10 @@ export default function callApi ({path, method = 'get', body, query}) {
 
   let queryString = query ? `?${flatternObj(query)}` : '';
   let url = `${path}${queryString}`;
-  console.log("body", body);
   return fetch(url, {
-    headers: { 'content-type': 'application/json' },
+    headers: {'Accept': 'application/json','Content-Type': 'application/json'},
     method,
-    body: (body),
+    body: JSON.stringify(body),
   })
     .then(response => response.json().then(json => ({json, response})))
     .then(({json, response}) => {

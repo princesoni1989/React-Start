@@ -6,11 +6,12 @@ import path from 'path';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import logger from './util/logger';
 import { port } from './config';
 import jade from 'jade';
 import assets from './assets';
-
+import {login, signUp, listUsers} from './api';
 
 
 // React And Redux Setup
@@ -42,13 +43,17 @@ server.use(express.static(path.join(__dirname, 'public'), { maxAge: 3600000 }));
 server.use(cookieParser());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
-
+server.use(cors());
 //
 // Only use morgan logger in production
 // -----------------------------------------------------------------------------
 if (process.env.NODE_ENV === 'production') {
   server.use(morgan('combined'));
 }
+
+server.post('/api/login', login);
+server.post('/api/signup', signUp);
+server.get('/api/users', listUsers);
 
 server.get('/health-check', (req, res) => {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');

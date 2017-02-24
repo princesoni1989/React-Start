@@ -1,44 +1,26 @@
 import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
-  SIGNUP,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
 } from '../constants';
 
 const initialState = {
-  login: {
-    isLogin: false,
-    message: '',
-  },
-  signup: {
-    data: [],
-  },
+  status: false,
 };
 
 const authentication = function (state = initialState, action) {
   switch (action.type) {
     case LOGIN_SUCCESS:
+    case SIGNUP_SUCCESS:
       return {
-        ...state,
-        login: {
-          isLogin: true,
-          message: action.response,
-        },
+        ...state, status: true, data: action.response,
       };
 
     case LOGIN_FAILURE:
+    case SIGNUP_FAILURE:
       return {
-        ...state,
-        login: {
-          isLogin: false,
-          error:action.error,
-        },
-      };
-    case SIGNUP:
-      return {
-        ...state,
-        signup: {
-          data: action.payload.data,
-        },
+        ...state, status: false, data: action.response,
       };
     default:
       return state;
