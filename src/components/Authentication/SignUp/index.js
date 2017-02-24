@@ -46,9 +46,11 @@ class SignUp extends Component {
     const {email, fullName, password, age, location, onSubmit, type}=this.state;
     return (
       <div className='signup-form'>
+        <div className='seperator-line'>
+          <h1 className="heading">Sign Up For Free</h1>
+        </div>
         <ul>
           <li className='form-group'>
-            <small>Full Name</small>
             <input className='form-control' type='text' placeholder='Full Name'
                    onChange={(e)=>this.changeHandler(e.target.value,'name',true)} required />
             <p className='form-group text-danger'>
@@ -56,7 +58,6 @@ class SignUp extends Component {
           </li>
 
           <li className='form-group'>
-            <small>Email Address</small>
             <input className='form-control' type='text' placeholder='Email Address'
                    onChange={(e)=>this.changeHandler(e.target.value,'email',true)} required />
             <p className='form-group text-danger'>
@@ -71,7 +72,7 @@ class SignUp extends Component {
             </p>
           </li>
           <li className='form-group txt-center'>
-            <button className='btn-danger' onClick={this.handleSignUp}>Sign Up</button>
+            <button className='btn-default' onClick={this.handleSignUp}>Sign Up</button>
           </li>
 
           <li className='form-group txt-center'>

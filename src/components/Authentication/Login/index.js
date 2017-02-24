@@ -78,7 +78,7 @@ class Login extends Component {
       <div className='login-form-container'>
 
         <div className='seperator-line'>
-          <span>OR</span>
+          <h1 className="heading">Login Form</h1>
         </div>
         <p className='form-group text-danger'>
           {message}
@@ -100,9 +100,6 @@ class Login extends Component {
               {password.changed && !lessThan(password.value, 6) && 'Password must be 6 characters long.'}
               {onSubmit && !isRequired(password.value) && 'Mandatory Field.'}
             </p>
-          </li>
-          <li className='form-group form-group'>
-            <a href='#' className='form-link'>Forgot Password ?</a>
           </li>
           <li className='form-group txt-center'>
             <button className='btn-default' onClick={() => handleLogin()}>Login</button>
