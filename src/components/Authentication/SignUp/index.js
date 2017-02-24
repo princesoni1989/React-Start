@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {isRequired, lessThan, validateEmail, formatDatetoDDMMYY, getTodaysDate} from '../../../util/validations';
+import {signUp} from '../../../actions/authentication';
+import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 import {signUpNewUser} from '../../../actions/authentication';
 import './style.scss';
@@ -17,10 +18,7 @@ class SignUp extends Component {
 
   changeHandler = (value, property, changed = 'true')=> {
     this.setState({
-      [property]: {
-        value,
-        changed,
-      },
+      [property]: value,
     });
   }
 
@@ -39,6 +37,9 @@ class SignUp extends Component {
     this.setState({
       onSubmit: true,
     });
+    let {name, email, password} =  this.state;
+    this.props.userSignUp({name, email, password});
+
   }
 
 
@@ -85,15 +86,13 @@ class SignUp extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    signup: state.signup,
+    signup: state.authentication.status,
   };
 };
 
 function mapDispatchToProps (dispatch) {
   return ({
-    signUpNewUser: (firstName, lastName, email, password, birthdate, location) => {
-      dispatch(signUpNewUser(firstName, lastName, email, password, birthdate, location));
-    },
+    userSignUp: bindActionCreators(signUp, dispatch),
   });
 }
 

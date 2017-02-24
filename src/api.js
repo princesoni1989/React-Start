@@ -31,7 +31,7 @@ export function signUp (req, res, next){
 }
 
 export function listUsers (req, res, next){
-  User.find({}, (err, users) => {
+  User.find({}, '-password',(err, users) => {
     if(err) return res.status(500).send(err);
     res.status(200).json(users);
   });
