@@ -48,7 +48,7 @@ class Login extends Component {
   render () {
     const {login} = this.props;
     console.log("login", login);
-    if(login.status)
+    if(login)
       browserHistory.push('/users');
 
     const {email, password, onSubmit, type}=this.state;
