@@ -73,7 +73,7 @@ class Login extends Component {
       <div className='login-form-container'>
 
         <div className='seperator-line'>
-          <span>OR</span>
+          <h1 className="heading">Login Form</h1>
         </div>
         <p className='form-group text-danger'>
         </p>
