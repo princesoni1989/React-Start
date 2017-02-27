@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {signUp} from '../../../actions/authentication';
 import {bindActionCreators} from 'redux';
@@ -16,42 +16,33 @@ class SignUp extends Component {
     };
   }
 
-  changeHandler = (value, property, changed = 'true')=> {
+  changeHandler = (value, property)=> {
     this.setState({
       [property]: value,
     });
   }
 
   showHandler = () => {
-    let inputType = "";
-    if (this.state.type === 'password')
-      inputType = 'text';
-    else
-      inputType = 'password';
     this.setState({
-      type: inputType,
+      type: this.state.type === 'password' ? 'text' : 'password',
     });
   }
 
   handleSignUp = () => {
-    this.setState({
-      onSubmit: true,
-    });
     let {name, email, password} =  this.state;
     this.props.userSignUp({name, email, password});
-
   }
-
 
   render () {
     const {signup} = this.props;
-    if(signup)
+    if (signup) {
       browserHistory.push('/users');
-    const {email, fullName, password, age, location, onSubmit, type}=this.state;
+    }
+    const {email, password, type} = this.state;
     return (
       <div className='signup-form'>
         <div className='seperator-line'>
-          <h1 className="heading">Sign Up For Free</h1>
+          <h1 className='heading'>Sign Up For Free</h1>
         </div>
         <ul>
           <li className='form-group'>
@@ -87,6 +78,11 @@ class SignUp extends Component {
     );
   }
 }
+
+SignUp.propTypes = {
+  signup: PropTypes.boolean,
+  userSignUp: PropTypes.func,
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {

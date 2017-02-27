@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
-import {isRequired, lessThan, validateEmail} from '../../../util/validations';
 import login from '../../../actions/authentication';
 import {connect} from 'react-redux';
 import {Link, browserHistory} from 'react-router';
-import endpoints from '../../../endpoints/authentication';
 
 import './style.scss';
 
@@ -13,78 +11,62 @@ class Login extends Component {
     super(props);
     this.state = {
       inputFields: ['email', 'password'],
-      onSubmit: false,
       type: 'password',
 
     };
   }
 
   componentWillMount () {
-    const {inputFields}=this.state;
-    inputFields.map((input) => {
-
-      let value = '';
-      if (input === 'location')
-        value = 'Select Location';
-
+    const {inputFields} = this.state;
+    inputFields.map(input => {
       this.setState({
-        [input]: {
-          value,
-          changed: false,
-        },
+        [input]: '',
       });
     });
   }
 
-  changeHandler = (value, property, changed = 'true') => {
+  changeHandler = (value, property) => {
     this.setState({
-      [property]: {
-        value,
-        changed,
-      },
+      [property]: value,
     });
   };
 
   render () {
     const {login} = this.props;
-    console.log("login", login);
-    if(login)
+    if (login) {
       browserHistory.push('/users');
+    }
+    const {email, password, type} = this.state;
 
-    const {email, password, onSubmit, type}=this.state;
     const showPassword = () => {
-      let inputType = "";
-      if (type === 'password')
-        inputType = 'text';
-      else
-        inputType = 'password';
       this.setState({
-        type: inputType,
+        type: type === 'password' ? 'text' : 'password',
       });
     };
     const handleLogin = () => {
-        this.props.userLogin({
-          email: email.value,
-          password: password.value,
-        });
+      this.props.userLogin({
+        email,
+        password,
+      });
     };
 
     return (
       <div className='login-form-container'>
 
         <div className='seperator-line'>
-          <h1 className="heading">Login Form</h1>
+          <h1 className='heading'>Login Form</h1>
         </div>
         <p className='form-group text-danger'>
         </p>
         <ul className='login-form'>
           <li className='form-group'>
             <input className='form-control' id='email' type='email' name='email' placeholder='Email' ref='email'
-                   onChange={(e) => this.changeHandler(e.target.value, 'email', true)} required />
+                   onChange={(e) => this.changeHandler(e.target.value, 'email')} required />
           </li>
           <li className='form-group'>
-            <input className='form-control' id='password' type={this.state.type} name='password' placeholder='Password' ref='password'
-                   onChange={(e) => this.changeHandler(e.target.value, 'password', true)} required />
+            <input className='form-control' id='password' type={this.state.type} name='password' placeholder='Password'
+                   ref='password'
+                   onChange={(e) => this.changeHandler(e.target.value, 'password')} required />
             <span className='show-password' onClick={showPassword}>SHOW</span>
           </li>
           <li className='form-group txt-center'>
@@ -98,6 +80,11 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  login: PropTypes.Boolean,
+  userLogin: PropTypes.func,
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {

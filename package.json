@@ -10,7 +10,7 @@
     "lint": "eslint src",
     "lint:changed": "LIST=`git diff-index --name-only HEAD | grep '.jsx\\{0,1\\}'$`; if [ \"$LIST\" ]; then eslint $LIST; fi",
     "lint:changed:fix": "LIST=`git diff-index --name-only HEAD | grep '.jsx\\{0,1\\}'$`; if [ \"$LIST\" ]; then eslint $LIST --fix; fi",
-    "lint:watch": "esw src -w",
+    "lint:watch": "esw src -w --ignore-path src/server.js",
     "clean": "babel-node tools/run clean",
     "copy": "babel-node tools/run copy",
     "bundle": "babel-node tools/run bundle",
@@ -120,9 +120,19 @@
     "webpack-middleware": "^1.5.1"
   },
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Prince Soni",
+    "email": "1989prince.soni@gmail.com"
   },
+  "contributors": [
+    {
+      "name": "Yatin Gera",
+      "email": "yatin.gera@tothenew.com"
+    },
+    {
+      "name": "Vijay Ranghar",
+      "email": "vijay.ranghar@tothenew.com"
+    }
+  ],
   "keywords": [
     "react",
     "react boiler plate",

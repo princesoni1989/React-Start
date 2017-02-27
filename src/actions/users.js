@@ -1,7 +1,7 @@
 import {
   GET_USERS,
 } from '../constants';
-import {mergeDefault} from '../util/helper';
+import endpoints from '../endpoints/authentication';
 import callApi from '../util/apiCaller';
 
 function users (response) {
@@ -11,12 +11,11 @@ function users (response) {
   };
 }
 
-export default function fetch (params, data) {
+export default function fetchUsers () {
   return dispatch => {
     return callApi({
-        path: params.path,
-        method: params.method,
-        body: data,
+        path: endpoints.users.path,
+        method: endpoints.users.method,
       }
     )
       .then((response) => {
