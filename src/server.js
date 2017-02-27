@@ -12,7 +12,7 @@ import { port } from './config';
 import jade from 'jade';
 import assets from './assets';
 import {login, signUp, listUsers} from './api';
-
+import authenticate from './auth';
 
 // React And Redux Setup
 import configureStore from './store';
@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === 'production') {
 
 server.post('/api/login', login);
 server.post('/api/signup', signUp);
-server.get('/api/users', listUsers);
+server.get('/api/users', authenticate, listUsers);
 
 server.get('/health-check', (req, res) => {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');

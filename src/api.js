@@ -1,4 +1,5 @@
-let mongoose = require('mongoose');
+import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 mongoose.connect('mongodb://reactapp:reactapp@ds161039.mlab.com:61039/reaactapp');
 mongoose.connection.on('error', (err) => {
     console.error('MongoDB connection error: ' + err);
@@ -18,7 +19,13 @@ export function login (req, res, next) {
   User.findOne({email: req.body.email}, (err, user) => {
     if (err) return res.status(422).json(err);
     if(!user) return res.status(422).json('invalid credentials');
-    res.status(200).json(user);
+    let token = jwt.sign(user, 'reactstartapplication', {
+      expiresIn: 1440, // expires in 24 hours
+    });
+    res.status(200).json({
+      success: true,
+      token: token,
+    });
   });
 }
 
