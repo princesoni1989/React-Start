@@ -13,6 +13,7 @@ import jade from 'jade';
 import assets from './assets';
 import {login, signUp, listUsers} from './api';
 import authenticate from './auth';
+import cookie from 'react-cookie';
 
 // React And Redux Setup
 import configureStore from './store';
@@ -90,6 +91,7 @@ server.get('*', (req, res, next) => {
 
     return fetchComponentData(store, renderProps.components, renderProps.params)
       .then(() => {
+        cookie.plugToRequest(req, res);
         const initialView = renderToString(
           <Provider store={store}>
             <RouterContext {...renderProps} />

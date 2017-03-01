@@ -3,11 +3,13 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import fetchUsers from '../../actions/users';
 import {browserHistory} from 'react-router';
+import cookie from 'react-cookie';
 
 import './style.scss';
 class SignUp extends Component {
   componentDidMount () {
     this.props.getUsers();
+    console.log("token--------------------", cookie.load('token'));
   }
 
   logOut = () => {

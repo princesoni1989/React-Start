@@ -7,6 +7,7 @@ import {
 
 const initialState = {
   status: false,
+  data: {},
 };
 
 const authentication = function (state = initialState, action) {

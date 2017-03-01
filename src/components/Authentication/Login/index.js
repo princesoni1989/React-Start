@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import login from '../../../actions/authentication';
 import {connect} from 'react-redux';
 import {Link, browserHistory} from 'react-router';
+import cookie from 'react-cookie';
 
 import './style.scss';
 
@@ -33,21 +34,21 @@ class Login extends Component {
 
   render () {
     const {login} = this.props;
-    if (login) {
-      browserHistory.push('/users');
-    }
     const {email, password, type} = this.state;
-
     const showPassword = () => {
       this.setState({
         type: type === 'password' ? 'text' : 'password',
       });
     };
-    const handleLogin = () => {
-      this.props.userLogin({
+    const handleLogin = async () => {
+     await  this.props.userLogin({
         email,
         password,
       });
+      cookie.save('token', this.props.response.token);
+      if (this.props.login) {
+        browserHistory.push('/users');
+      }
     };
 
     return (
@@ -89,6 +90,7 @@ Login.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.authentication.status,
+    response: state.authentication.data,
   };
 };
 
