@@ -9,8 +9,12 @@ const initialState = {
 const users = function (state = initialState, action) {
   switch (action.type) {
     case GET_USERS: {
+      let list
+      if(typeof action.response.success !== 'undefined' && action.response.success === false)
+        list = []
+      else list = action.response
       return {
-          userList: action.response,
+          userList: list
       };
     }
     default:

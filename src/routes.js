@@ -17,9 +17,8 @@ if (typeof require.ensure !== 'function') {
 
 function redirectIfLoggedIn (nextState, replace, callback) {
   let token = cookie.load('token')
-  console.log(token)
   if (token) {
-    replace('users')
+    replace('/users')
   }
   callback()
 }
