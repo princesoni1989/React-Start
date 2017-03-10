@@ -15,3 +15,28 @@ nav {
     }
   }
 }
+.users {
+  width: 600px;
+  margin: 100px  auto 0 auto;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  border-collapse: collapse;
+  th {
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+    background: #1ab188;
+    padding: 10px;
+    font-weight: normal;
+  }
+  td {
+    width: 600px;
+    margin: 0 auto;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    padding: 8px 10px;
+  }
+}
