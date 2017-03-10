@@ -8,7 +8,6 @@ import cookie from 'react-cookie';
 import './style.scss';
 class Users extends Component {
   componentDidMount () {
-    console.log('mount')
     const token = cookie.load('token')
     this.props.getUsers({'x-access-token': token});
   }
