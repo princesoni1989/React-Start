@@ -1,37 +1,63 @@
-## React-Redux-Startup
+This project is based on React 15.0.2 wrapping around useful utility for React + Redux application development.
 
-A simple startup application for production grade projects
+The seed contains a sample React + Redux application and is pre-configured to install a bunch of development and testing tools for instant web development.
 
-The project has the following things incorporated
+## Getting Started
 
-1. Express server running through webpack middleware
-2. esling configured with some defult rules
-3. babel-node setup to write full ES^ code in node
-4. precommit hook setup to run custom script before any git commit
-5. webpack plugins configured to create optimized and minimized production build
-6. basic redux code setup
-7. suppoort for jade to use server side rendering if required
-8. dotevn setup, to set environment variables
+You can clone repository \[REPO\] and install dependency.
 
-____
+### Prerequisites
 
-+ Make sure to run `cp .env.example .env` command for the first time after you clone the repo
+We have number of server and build tools preconfigured in application, to use them you need to pre-install below dependency
 
-+ **`npm run start`** to run the server in development mode through webpack middleware.
+* Node
+* React
+* Webpack
+* Redux
+* MongoDB
 
-  To access the server, navigate to `http://localhost:3001`
+### Clone angular-js-seed
 
-+ **`npm run build`** create a development build in `build` folder
-`cd` to `build/` and the run command `node server` to run server in development mode
-  
-  To access the server, navigate to `http://localhost:3000`
+Clone the angular-seed repository using [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git):
 
-+ **`npm run build:production`** create a production build in `build` folder
-`cd` to `build/` and the run command `node server` to run server in production mode
+```
+git 
+[command]
+```
 
-  To access the server, navigate to `http://localhost:3000`
+### Install Dependencies
 
-+ **`npm run lint:changed`** to run eslint against the last changes files
+Run the below command to install all project related dependencies.
 
-+ `precommmit` is configured to run `eslint` before any commits
-  Make sure you fix all lint errors before commiting your code
+```
+npm install
+```
+
+You should find that you have two new folders in your project.
+
+* `node_modules`
+  - contains the npm packages for the tools we need
+
+### Run the Application
+
+We have pre-configured the project with a simple webpack development web server. The simplest way to start this server is:
+
+```
+npm start
+```
+
+Now browse to the app at`http://localhost:3001`.This will start server in development mode and enable you do fast development. you can make changes and it will deploy automatically.
+
+## Pre configured application
+
+This app comes with preconfigured configuration. You can find below listed functionality already imaplemented -
+
+* login
+* logout
+* signup
+* home screen
+* server
+* build management
+* Initial test cases
+
+
