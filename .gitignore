@@ -35,6 +35,4 @@ dist
 # Mac files
 .DS_Store
 
-# dotenv file
-.env
 npm-debug.log.*
