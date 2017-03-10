@@ -6,17 +6,20 @@ import {browserHistory} from 'react-router';
 import cookie from 'react-cookie';
 
 import './style.scss';
-class SignUp extends Component {
+class Users extends Component {
   componentDidMount () {
-    this.props.getUsers();
-    console.log("token--------------------", cookie.load('token'));
+    console.log('mount')
+    const token = cookie.load('token')
+    this.props.getUsers({'x-access-token': token});
   }
 
   logOut = () => {
-    browserHistory.push('/login');
+    cookie.remove('token');
+    browserHistory.push('/login')
   }
   render () {
     let {users} = this.props;
+    console.log(users)
     return (
       <div>
         <a onClick={this.logOut}>Logout</a>
@@ -43,10 +46,14 @@ class SignUp extends Component {
   }
 }
 
-SignUp.propTypes = {
+Users.propTypes = {
   users: PropTypes.array,
   getUsers: PropTypes.func,
 };
+
+Users.defaultProps = {
+  users: [],
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -60,12 +67,12 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-SignUp.need = [
+Users.need = [
   fetchUsers,
 ];
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SignUp);
+)(Users);
 

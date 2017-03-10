@@ -11,11 +11,12 @@ function users (response) {
   };
 }
 
-export default function fetchUsers () {
+export default function fetchUsers (headers) {
   return dispatch => {
     return callApi({
         path: endpoints.users.path,
         method: endpoints.users.method,
+        headers,
       }
     )
       .then((response) => {

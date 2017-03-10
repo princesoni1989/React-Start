@@ -6,6 +6,7 @@ import Landing from './components/Landing';
 import Login from './components/Authentication/Login/';
 import SignUp from './components/Authentication/SignUp';
 import Users from './components/Users';
+import cookie from 'react-cookie';
 
 // require.ensure polyfill for node
 if (typeof require.ensure !== 'function') {
@@ -14,6 +15,14 @@ if (typeof require.ensure !== 'function') {
   };
 }
 
+function redirectIfLoggedIn (nextState, replace, callback) {
+  let token = cookie.load('token')
+  console.log(token)
+  if (token) {
+    replace('users')
+  }
+  callback()
+}
 
 // react-router setup with code-splitting
 // More info: http://blog.mxstbr.com/2016/01/react-apps-with-pages/
@@ -33,6 +42,7 @@ export default (
           cb(null, Login);
         });
       }}
+      onEnter={redirectIfLoggedIn}
     />
     <Route
       path='/signup'
@@ -41,6 +51,7 @@ export default (
           cb(null, SignUp);
         });
       }}
+      onEnter={redirectIfLoggedIn}
     />
     <Route
       path='/users'
@@ -49,6 +60,6 @@ export default (
           cb(null, Users);
         });
       }}
-      />
+    />
   </Route>
 );

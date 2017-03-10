@@ -13,7 +13,6 @@ class Login extends Component {
     this.state = {
       inputFields: ['email', 'password'],
       type: 'password',
-
     };
   }
 
@@ -33,7 +32,6 @@ class Login extends Component {
   };
 
   render () {
-    const {login} = this.props;
     const {email, password, type} = this.state;
     const showPassword = () => {
       this.setState({
@@ -53,7 +51,6 @@ class Login extends Component {
 
     return (
       <div className='login-form-container'>
-
         <div className='seperator-line'>
           <h1 className='heading'>Login Form</h1>
         </div>

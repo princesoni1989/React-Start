@@ -15,13 +15,13 @@ const authentication = function (state = initialState, action) {
     case LOGIN_SUCCESS:
     case SIGNUP_SUCCESS:
       return {
-        ...state, status: true, data: action.response,
+        status: action.response.success, data: action.response,
       };
 
     case LOGIN_FAILURE:
     case SIGNUP_FAILURE:
       return {
-        ...state, status: false, data: action.response,
+        status: false, data: action.response,
       };
     default:
       return state;

@@ -34,10 +34,6 @@ class SignUp extends Component {
   }
 
   render () {
-    const {signup} = this.props;
-    if (signup) {
-      browserHistory.push('/users');
-    }
     const {email, password, type} = this.state;
     return (
       <div className='signup-form'>
