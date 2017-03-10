@@ -1,0 +1,17 @@
+nav {
+  overflow: auto;
+  li {
+    a {
+      font-size: 18px;
+      color: #fff;
+      text-transform: lowercase;
+      padding: 10px 12px;
+      background: #1ab188;
+      display: block;
+      width: 150px;
+      text-align: center;
+      margin: 10px;
+      float: right;
+    }
+  }
+}

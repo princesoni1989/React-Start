@@ -22,7 +22,11 @@ class Users extends Component {
     console.log(users)
     return (
       <div>
-        <a onClick={this.logOut}>Logout</a>
+        <nav>
+          <ul>
+            <li><a onClick={this.logOut}>Logout</a></li>
+          </ul>
+        </nav>
         <table className='users'>
           <thead>
             <tr>
